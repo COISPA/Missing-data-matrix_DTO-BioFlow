@@ -1,0 +1,13 @@
+taxa with no data
+-Apusozoa
+-Aquificae (1 row)
+-Chromeridophyta
+-Cycliophora (1 row)
+-Deferribacteres
+-Metamonada
+-Nanoarchaeota
+-Orthonectida
+-Planctomycetota
+-Synergistetes (1 row)
+-Thaumarchaeota
+-Thermodesulfobacteria
