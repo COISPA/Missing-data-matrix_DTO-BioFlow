@@ -52,6 +52,9 @@ taxa <- "phylum"
 
 -	**in case of 1000000**_ this section was developed ad-hoc for the purposes of deliverable D2.8. Follow the instructions within that section to set the code correctly.
 
-The resulting missing data assessment was summarized with percentages in the form of a skills matrix where data coverages and resolutions are intended as skills, while the matrix format is the framework for the combination of these data features.
+The resulting missing data assessment was summarized with percentages in the form of a skills matrix where data coverages and resolutions are intended as skills, while the matrix format is the framework for the combination of these data features. An excel template is provided.
 
-More information about the workflow and elements to assess the status of missing data as well as examples of Skills_Matrix applications could be found within the Deliverable 2.8 of [DTO-BioFlow project](http//)
+## DTO-BioFlow applications D2.8
+Examples of Missing data Matrix applications could be found within the folder [D2.8]() related to the Deliverable 2.8 of DTO-BioFlow project.
+
+Furthermore, within [Clip_ICES_ecoregions_Estensione_Med]() the shape files related to the spatial domain selected are stored.
