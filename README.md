@@ -1,12 +1,12 @@
-# Skills-Matrix_DTO-BioFlow
+# Missing-data-Matrix_DTO-BioFlow
 A tool to assess the status of missing data within EMODnet Biology
 
-**Authors**: M. Chiarini
+**Lead Author**: M. Chiarini
 COISPA ETS Foundation 
 
 ## Description
-Skills_Matrix is a **flexible and adaptable tool** developed under the framework of Task 2.3 (“Assessing the impact of missing data”) within the Work Package 2 (“Increasing flow of relevant biodiversity data”) of [DTO-BioFlow](https://dto-bioflow.eu/) project. Skills_Matrix performs a **semi-quantitative assessment of the status of missing biodiversity data** (intended as lacking or absent data because they do not exist or are unavailable or inaccessible) included in the European Marine Observation and Data Network (EMODnet). The main script `skills_matrix()` is divided in different sections designed to deal with each element of the assessment: i) information extraction, ii) scoring and selection process, iii) skills matrix outcomes. Biodiversity data are downloaded from EMODnet directly into an R environment by means of the EMODnet_Web Feature Service (WFS) package. More information about how users can download and select data sources within EMODnet_WFS are provided here: https://github.com/EMODnet/emodnet.wfs/tree/main.
-The main script `skills_matrix()` has been developed with the intention of being flexible, thus a hypothetical user could easily adapt the tools to its needs and run the assessment process. A bullet point describing the sections of the code that need to be adapted according to the user's needs follows:
+Missing data Matrix is a **flexible and adaptable tool** developed under the framework of Task 2.3 (“Assessing the impact of missing data”) within the Work Package 2 (“Increasing flow of relevant biodiversity data”) of [DTO-BioFlow](https://dto-bioflow.eu/) project. Missing data Matrix performs a **semi-quantitative assessment of the status of missing biodiversity data** (intended as lacking or absent data because they do not exist or are unavailable or inaccessible) included in the European Marine Observation and Data Network (EMODnet). The main script `Missing data_matrix()` is divided in different sections designed to deal with each element of the assessment: i) information extraction, ii) scoring and selection process, iii) skills matrix outcomes. Biodiversity data are downloaded from EMODnet directly into an R environment by means of the EMODnet_Web Feature Service (WFS) package. More information about how users can download and select data sources within EMODnet_WFS are provided here: https://github.com/EMODnet/emodnet.wfs/tree/main.
+The main script `Missing data_matrix()` has been developed with the intention of being flexible, thus a hypothetical user could easily adapt the tools to its needs and run the assessment process. A bullet point describing the sections of the code that need to be adapted according to the user's needs follows:
 
 -	**Directory**_ here you have to specify the directory `dir` and `layer` to be assessed as intended in [EMODnet_WFS package](https://github.com/EMODnet/emodnet.wfs). 
 ``` r
@@ -14,7 +14,7 @@ dir <- "C:\\Users\\Utente\\OneDrive - Coispa Tecnologia & Ricerca S.C.A.R.L\\Doc
 layer <- "eurobis" # set here the desired layer, more info at: https://github.com/EMODnet/emodnet.wfs 
 ```
 The outputs will be stored within 3 folders: 1) "records", a folder storing maps with the location of every single data downloaded, whether it is inside or outside the spatial domain; 2) "Outputs", a folder that includes the results of skills matrices by time interval both in .csv and .xlsx formats; 3) “Rdata”, where the R objects are saved. 
-*Note*. The main script `skills_matrix()` working together with `function()` including all the useful functions. Be sure that both `skills_matrix()` and `function()` are stored in the same folder you are setting here.
+*Note*. The main script `Missing data_matrix()` working together with `function()` including all the useful functions. Be sure that both `Missing data matrix()` and `function()` are stored in the same folder you are setting here.
 
 -	**Packages**_ here you call the packages. You can download them directly from CRAN:
 ``` r
