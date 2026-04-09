@@ -41,7 +41,7 @@ wfs_bio <- emodnet_init_wfs_client(service = "biology_occurrence_data") # set th
   
   * ii)	the `species` to be assessed (enter the full accepted scientific name according to aphiaID available on [WoRMS](https://www.marinespecies.org/index.php)) 
 ``` r
-species <- c("Ctenophora",”Platyhelmintes”)
+species <- c("Ctenophora","Platyhelmintes")
 ```
   *Note*. All taxa entered must correspond to the same taxonomic level.
   
