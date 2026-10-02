@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DTO-BioFlow Missing Data Matrix Documentation</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* Core Design Variables (Fixed DTO-BioFlow Light Theme) */
+    :root {
+      --primary-color: #0b4f8c;
+      --primary-light: rgba(11, 79, 140, 0.1);
+      --secondary-color: #167fc9;
+      --accent-color: #00a896;
+      --text-color: #2b303a;
+      --bg-color: #f7fafc;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --header-bg: #ffffff;
+      --footer-bg: #092c4c;
+      --body-font: 'Inter', sans-serif;
+      --heading-font: 'Outfit', sans-serif;
+      --transition-speed: 0.3s;
+    }
+
+    /* Base Styling */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--body-font);
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .app-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      width: 100%;
+    }
+
+    /* Brand Header */
+    .brand-header {
+      background-color: var(--header-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      z-index: 10;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .brand-logo {
+      height: 70px;
+      width: auto;
+    }
+
+    /* Custom Wave Banner at Top Right */
+    .wave-decoration {
+      height: 60px;
+      opacity: 0.8;
+    }
+
+    /* Primary layout document styles */
+    .document-body {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      padding: 3rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+      border: 1px solid var(--border-color);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--heading-font);
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-top: 2rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.25rem;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      margin-top: 1.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+
+    ul,
+    ol {
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    code {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #edf2f7;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+
+    pre {
+      background-color: #2d3748;
+      color: #f7fafc;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+
+    pre code {
+      background-color: transparent;
+      color: inherit;
+      padding: 0;
+    }
+
+    a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: var(--primary-color);
+      text-decoration: underline;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: var(--border-color);
+      margin: 2rem 0;
+    }
+
+    /* Action Buttons styling */
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--secondary-color);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none !important;
+      transition: background-color var(--transition-speed), transform 0.2s;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn:hover {
+      background-color: var(--primary-color);
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    .btn-accent {
+      background-color: var(--accent-color);
+    }
+
+    .btn-accent:hover {
+      background-color: #008f80;
+    }
+
+    /* Modal dialog styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      max-width: 600px;
+      width: 100%;
+      padding: 2rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      border: 1px solid var(--border-color);
+      position: relative;
+      animation: modalSlide 0.3s ease-out;
+    }
+
+    @keyframes modalSlide {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: #a0aec0;
+      background: none;
+      border: none;
+    }
+
+    .close-modal:hover {
+      color: #4a5568;
+    }
+
+    /* Figure blocks styling */
+    .figure-container {
+      background-color: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.8rem 0;
+    }
+
+    .figure-image {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 1rem auto;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .figure-caption {
+      font-size: 0.85rem;
+      color: #4a5568;
+      line-height: 1.4;
+      border-top: 1px solid var(--border-color);
+      padding-top: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Explanation card list styling */
+    .explain-list {
+      list-style: none;
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+
+    .explain-card {
+      background-color: #ffffff;
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--primary-color);
+      border-radius: 0 6px 6px 0;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+
+    .explain-card h5 {
+      font-family: var(--heading-font);
+      font-size: 1rem;
+      color: var(--primary-color);
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+    }
+
+    .explain-card p {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      color: #4a5568;
+    }
+
+    /* Brand Footer */
+    .brand-footer {
+      background-color: var(--footer-bg);
+      color: #cbd5e0;
+      padding: 2.5rem 2rem 1.5rem 2rem;
+      border-top: 4px solid var(--secondary-color);
+      font-size: 0.85rem;
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h4 {
+      color: white;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      border-bottom: 1px solid #1a365d;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a {
+      color: #cbd5e0;
+      font-weight: 400;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .funding-banner {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .eu-flag {
+      width: 60px;
+      height: auto;
+      flex-shrink: 0;
+    }
+
+    .funding-text {
+      font-size: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-link {
+      color: #cbd5e0;
+      font-size: 1.1rem;
+    }
+
+    .social-link:hover {
+      color: white;
+    }
+
+    /* Math Formulas */
+    .equation-block {
+      background-color: #f7fafc;
+      padding: 1.2rem;
+      border-radius: 6px;
+      margin: 1.5rem 0;
+      text-align: center;
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      border: 1px solid var(--border-color);
+      overflow-x: auto;
+    }
+
+    @media (max-width: 768px) {
+      .document-body {
+        padding: 1.5rem;
+      }
+
+      .brand-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      .wave-decoration {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header Section with DTO-BioFlow SVG Logo -->
+  <header class="brand-header">
+    <a href="https://dto-bioflow.eu/" target="_blank" class="logo-container"
+      style="text-decoration: none; display: inline-block;">
+      <img src="utilities/Logo_DTO_Bio-Flow.svg" alt="DTO-BioFlow Logo" class="brand-logo">
+    </a>
+
+    <!-- Wave graphics mimicking report design -->
+    <svg class="wave-decoration" viewBox="0 0 400 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 20 40 Q 60 20 100 40 T 180 40 T 260 40 T 340 40" fill="none" stroke="#00a896" stroke-width="2"
+        opacity="0.5" />
+      <path d="M 40 48 Q 80 28 120 48 T 200 48 T 280 48 T 360 48" fill="none" stroke="#167fc9" stroke-width="1.5"
+        opacity="0.4" />
+      <path d="M 10 32 Q 50 12 90 32 T 170 32 T 250 32 T 330 32" fill="none" stroke="#0b4f8c" stroke-width="1"
+        opacity="0.3" />
+      <!-- Small fish silhouettes floating in waves -->
+      <path d="M 110 25 Q 115 22 118 25 T 110 29 Z" fill="#167fc9" opacity="0.6" />
+      <path d="M 210 28 Q 215 25 218 28 T 210 32 Z" fill="#00a896" opacity="0.7" />
+      <path d="M 310 22 Q 315 19 318 22 T 310 26 Z" fill="#0b4f8c" opacity="0.5" />
+    </svg>
+  </header>
+
+  <!-- Main Content Layout -->
+  <div class="app-container">
+
+    <!-- Primary Document Container -->
+    <article class="document-body">
+      <section id="doc-title-page">
+        <!-- Title and Metadata Box featuring COISPA Logo on the right side -->
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1.5rem; border-bottom: 2px solid var(--primary-light); padding-bottom: 1.5rem;">
+          <div>
+            <h1>Missing Data Matrix DTO-BioFlow</h1>
+            <p class="lead-text"
+              style="font-size: 1.2rem; font-weight: 500; color: var(--primary-color); margin-bottom: 0.5rem; max-width: 750px;">
+              A tool to assess the status of missing data within EMODnet Biology
+            </p>
+            <p style="margin-bottom: 0; color: #4a5568; font-size: 0.95rem;">
+              <strong>Institution</strong>: COISPA ETS Foundation &nbsp;|&nbsp; <strong>App Version</strong>: 1.1
+            </p>
+          </div>
+          <a href="https://www.fondazionecoispa.org/en" target="_blank"
+            style="margin-left: auto; display: inline-block;">
+            <img src="utilities/coispa_logo.svg" alt="COISPA Logo"
+              style="height: 90px; width: auto; object-fit: contain;">
+          </a>
+        </div>
+
+        <!-- Interactive Action Buttons -->
+        <div class="button-group">
+          <button class="btn btn-accent" id="runAppBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Run shiny application
+          </button>
+
+          <a class="btn"
+            href="https://zenodo.org/records/17431251?preview_file=D2.8+Report+on+the+impact+of+missing+data.pdf"
+            target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            View Deliverable D2.8 Report
+          </a>
+        </div>
+      </section>
+
+      <hr>
+
+      <!-- Description Section -->
+      <section id="description">
+        <h2>Description</h2>
+        <p>
+          <code>Missing Data Matrix</code> is a <strong>flexible and adaptable tool</strong> developed under the
+          framework of the project <a href="https://dto-bioflow.eu/" target="_blank">DTO-BioFlow</a> to easy the 
+          assessment of missing data on the ability to develop digital solutions in a functional DTO environment.
+          Biodiversity data currently included in EMODnet Biology lot, and hence into the EDITO infrastructure 
+          serving the EU DTO, are assessed through a multistage methodology.
+        </p>
+
+        <p>
+          The application is structured with a shiny dashboard (<a href="app.R">app.R</a>) which connects to the core
+          analytical scoring tool in <a href="utilities/Missing data_matrix.R">Missing data_matrix.R</a> and helper of 
+          spatial/calculation logic in <a href="utilities/function.R">function.R</a>. Biodiversity data are queried and
+          downloaded from EMODnet directly into the R environment via the EMODnet Web Feature Service (WFS) package.
+        </p>
+
+        <!-- Objectives Sub-Section -->
+        <h3 id="objectives">Objectives &amp; Target Outcomes</h3>
+        <p>
+          The primary objective of the <code>Missing Data Matrix</code> is to provide information for
+          biodiversity data mobilization efforts. By doing so, the tool provides key outcomes to perform a risk-based
+          assessment on the applicability and suitability of potential digital solutions envisaged in the European
+          Digital Twin Ocean (DTO).
+        </p>
+
+        <!-- Methodology Sub-Section -->
+        <h3 id="methodology">Methodology &amp; Assessment Flow</h3>
+        <p>
+          <strong>Missing data</strong> is defined as data that are lacking or absent because the data does not exist or
+          is unavailable or inaccessible. The current version of the <code>Missing Data Matrix</code> is able to work on 
+          occurrence and abundance of missing data at different taxonomic levels.
+        </p>
+
+        <p>
+          The tool employs a multi-stage methodology outlined in the <a
+            href="https://zenodo.org/records/17431251?preview_file=D2.8+Report+on+the+impact+of+missing+data.pdf"
+            target="_blank">deliverable 2.8</a>. The workflow consists of four main procedural pillars (visualized in <a
+            href="#fig1"><strong>Figure 1</strong></a> below):
+        </p>
+
+        <!-- Figure 1 from Deliverable (Interactive Version) -->
+        <div class="figure-container" id="fig1" style="background-color: #ffffff; padding: 2rem;">
+          <div class="interactive-workflow">
+            <!-- Workflow Steps Diagram -->
+            <div class="workflow-steps"
+              style="display: flex; justify-content: space-between; align-items: stretch; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+              <div class="workflow-step active" onclick="showWorkflowStep(1)"
+                style="flex: 1; min-width: 200px; padding: 1.25rem; border: 2px solid var(--primary-color); border-radius: 8px; cursor: pointer; text-align: center; transition: all 0.3s; background-color: var(--primary-light); box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: center;">
+                <div style="font-weight: bold; font-size: 1.1rem; color: var(--primary-color); margin-bottom: 0.25rem;">
+                  1. Information Extraction</div>
+                <div style="font-size: 0.8rem; color: #4a5568;">Query &amp; Download from EMODnet WFS</div>
+              </div>
+              <div
+                style="color: var(--primary-color); font-weight: bold; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                &rarr;</div>
+              <div class="workflow-step" onclick="showWorkflowStep(2)"
+                style="flex: 1; min-width: 200px; padding: 1.25rem; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer; text-align: center; transition: all 0.3s; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center;">
+                <div style="font-weight: bold; font-size: 1.1rem; color: var(--primary-color); margin-bottom: 0.25rem;">
+                  2. Scoring</div>
+                <div style="font-size: 0.8rem; color: #4a5568;">Compute Missing Data Scores</div>
+              </div>
+              <div
+                style="color: var(--primary-color); font-weight: bold; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                &rarr;</div>
+              <div class="workflow-step" onclick="showWorkflowStep(3)"
+                style="flex: 1; min-width: 200px; padding: 1.25rem; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer; text-align: center; transition: all 0.3s; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center;">
+                <div style="font-weight: bold; font-size: 1.1rem; color: var(--primary-color); margin-bottom: 0.25rem;">
+                  3. Selection Process</div>
+                <div style="font-size: 0.8rem; color: #4a5568;">Dynamic Filtering </div>
+              </div>
+              <div
+                style="color: var(--primary-color); font-weight: bold; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                &rarr;</div>
+              <div class="workflow-step" onclick="showWorkflowStep(4)"
+                style="flex: 1; min-width: 200px; padding: 1.25rem; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer; text-align: center; transition: all 0.3s; background-color: #ffffff; display: flex; flex-direction: column; justify-content: center;">
+                <div style="font-weight: bold; font-size: 1.1rem; color: var(--primary-color); margin-bottom: 0.25rem;">
+                  4. Missing Data Matrix</div>
+                <div style="font-size: 0.8rem; color: #4a5568;">Outcomes visualization</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Caption goes immediately below Figure 1 (workflow steps) -->
+          <p class="figure-caption" style="margin-top: 1rem; margin-bottom: 0.5rem;">
+            <strong>Figure 1</strong>: Interactive flow chart schematising the assessment procedures of the missing data.
+             Click on each procedural pillar to display detailed information.
+          </p>
+        </div>
+
+        <!-- Descriptive Info Card containing the details -->
+        <div id="workflow-description-card"
+          style="background-color: #f8fafc; border-left: 5px solid var(--accent-color); padding: 1.5rem; border-radius: 0 8px 8px 0; min-height: 120px; transition: all 0.3s; border-top: 1px solid var(--border-color); border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); margin-top: 1rem;">
+          <h4 id="workflow-step-title"
+            style="margin-top: 0; color: var(--primary-color); font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">
+            1. Information Extraction</h4>
+          <div id="workflow-step-text"
+            style="font-size: 0.95rem; line-height: 1.6; color: var(--text-color); margin-bottom: 0;">
+            Biological occurrence/abundance data are downloaded from EMODnet WFS. They are organized in the form of a
+            hierarchical database by including a fixed number of rows which represent every possible combination among
+            the levels of the classification factors. The <strong>classification factors</strong> were designed to
+            summarize all the information in terms of coverage and resolution of the data contained in the EMODnet
+            Biology Lot (see <a href="#fig2"><strong>Figure 2</strong></a>).
+
+            <div class="figure-container" id="fig2" style="margin-top: 1.5rem;">
+              <img src="utilities/DTO-BioFlow_classification factors chart.png"
+                alt="Figure 2: Chart showing the different levels for each classification factor together with their hierarchical position."
+                class="figure-image"
+                style="width: 100%; height: auto; max-width: 920px; display: block; margin: 0 auto; border-radius: 8px; border: 1px solid var(--border-color);">
+              <p class="figure-caption">
+                <strong>Figure 2</strong>: Chart showing the different levels for each classification factor together
+                with their hierarchical position.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr>
+
+      <!-- Installation & Requirements Section -->
+      <section id="installation">
+        <h2>Installation</h2>
+
+        <h3>Packages</h3>
+        <p>
+          To run this application, make sure the following packages are installed from CRAN:
+        </p>
+        <pre><code class="language-r">install.packages(c("shiny", "bslib", "emodnet.wfs", "tidyverse", "sf", "terra", "openxlsx2", "DT", "plotly", "lubridate", "base64enc"))</code></pre>
+        <p>
+          <em>Note: Make sure that <a href="app.R">app.R</a>, <a href="utilities/Missing data_matrix.R">Missing
+              data_matrix.R</a>, <a href="utilities/function.R">function.R</a>, and <a
+              href="utilities/macrogroups.csv">macrogroups.csv</a> are stored in the correct project structure.</em>
+        </p>
+
+        <h3>Running the shiny app</h3>
+        <p>
+          Launch the app by running the following command in R:
+        </p>
+        <pre><code class="language-r">shiny::runApp(".")</code></pre>
+      </section>
+
+      <hr>
+
+      <!-- Configuration Section -->
+      <section id="configuration">
+        <h2>Configuration</h2>
+        <p>
+          The shiny app provides an interactive <strong>Configuration Panel</strong> sidebar divided into three main
+          sections:
+        </p>
+
+        <h3>1. Working Directory</h3>
+        <ul>
+          <li><strong>Absolute local path</strong>: Specify the absolute directory path where your code and data files
+            reside.
+            <pre><code class="language-r"># Example path (Windows)
+C:/Users/Username/Documents/COISPA/DTO_BioFlow/missing_data_matrix_R</code></pre>
+          </li>
+        </ul>
+
+        <h3>2. Information extraction</h3>
+        <ul>
+          <li><strong>EMODnet WFS Service Client</strong>: Choose either <code>biology_occurrence_data</code> (default)
+            or
+            <code>biology_abundance_data</code> as gridded DIVA(Data Interpolating Variational Analysis)-based data products.
+          </li>
+          <li><strong>Target Taxon or Taxa(comma-separated)</strong>: Here you have to define the taxon/taxa domain to
+            be analyzed using the classical Linnean taxonomic system and hierarchy (species, genus, family, order, class, phylum); it can
+            be entered either as a scientific name of the species (e.g., <em>Nephrops norvegicus</em>) or as higest
+            taxonomic levels (e.g., <em>Nephrops</em>, <em>Nephropidae</em>, <em>Decapoda</em>, <em>Malacostraca</em>,
+            <em>Arthropoda</em>). Only the taxa with an accepted name (intended as valid aphiaID) can be queried and
+            downloaded; please find more information on how to verify that a scientific name is assigned to a single and
+            persistent aphiaID <a href="https://marinespecies.org/aphia.php?p=match" target="_blank">here</a>. <br>Hence
+            the user can:
+            <ul>
+              <li>type a custom taxon or list of comma-separated taxa (e.g., <code>Acidobacteria, Ctenophora</code>) and
+                press Enter to add.<br><em>Note: all scientific names in the custom list must belong to the same
+                  taxonomic level (in the example provided above is phylum).</em></li>
+              <li>select a prebuilt macrogroup loaded dynamically from <a
+                  href="utilities/macrogroups.csv">macrogroups.csv</a>. In such a specific case taxa belonging to
+                different taxonomic levels can be downloaded and analyzed simultaneously. Some default macrogroups have been
+                already defined (e.g. <code>Phytoplankton</code>, <code>Zooplankton</code>, etc..), however the user is free to
+                modify them or create new ones by locally editing the <a
+                  href="utilities/macrogroups.csv">macrogroups.csv</a>.</li>
+            </ul>
+          </li>
+          <li><strong>Taxa Level</strong>:
+            <ul>
+              <li>If a <strong>prebuilt macrogroup</strong> is selected, this box is automatically disabled and reads
+                <code>(Defined in Macrogroup)</code>. The engine dynamically assigns mixed taxonomic levels for each
+                taxon according to the definitions in <a href="utilities/macrogroups.csv">macrogroups.csv</a>.
+              </li>
+              <li>If <strong>custom taxa</strong> are typed, choose the taxonomic level they belong to (e.g.,
+                <code>genus</code> if <em>Nephrops</em> is entered as taxon to be analysed); it will automatically
+                affect the selection of taxonomic resolution (see below).
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <h4 style="margin-top: 1rem;">Semicolon Hierarchical CSV Definitions</h4>
+        <p>
+          Prebuilt macrogroups are loaded dynamically from <a href="utilities/macrogroups.csv">macrogroups.csv</a> using
+          a semicolon-separated hierarchical structure (<code>Macrogroup;phylum;class;order;family;genus;species</code>).
+          The target taxon in each row is resolved as the rightmost non-empty column (lowest rank) and query levels are
+          parsed dynamically.
+        </p>
+
+        <h3>3. Selection process</h3>
+        <p>
+          This section acts as a filter to visualize different outcomes of the missing data assessment, giving the user
+          flexibility to investigate missing data percentages across different spatio-temporal coverages and
+          resolutions:
+        </p>
+        <ul>
+          <li><strong>Temporal Coverage (time-range)</strong>: Select which time-range to include, split into
+            <strong>Historical</strong> (1880 to 1999) and <strong>Present</strong> (2000 to 2026) aggregations.
+          </li>
+          <li><strong>Spatial Coverage (Ecoregion)</strong>: Select the target Mediterranean ecoregions, grouped under
+            <strong>FAO 37</strong> (Adriatic Sea, Aegean-Levantine Sea, Ionian Sea, Western Mediterranean, Black Sea)
+            and/or 
+            <strong>FAO 27</strong> (Atlantic/Baltic ecoregions).
+          </li>
+          <li><strong>Taxonomic Resolution</strong>: Choose the minimum taxonomic rank limit (<code>species</code>,
+            <code>genus</code>, <code>family</code>, <code>order_class</code>) to be investigated. The field is
+            automatically
+            pre-filtered according to the selected Taxa Level.
+          </li>
+          <li><strong>Temporal Resolution</strong>: Choose the minimum temporal resolution limit (<code>day_week</code>,
+            <code>month_season</code>, <code>annual</code>) to be investigated.
+          </li>
+          <li><strong>Spatial Resolution</strong>: Choose the minimum spatial resolution limit
+            (<code>geographical coordinates</code>, <code>shape/grid</code>) to be investigated.</li>
+        </ul>
+        <p>
+          <em>Note: the selection of minimum resolutions will affect the size of the data subsets to be investigated and
+            thus the percentage of missing data reported.</em>
+        </p>
+      </section>
+
+      <hr>
+
+      <!-- Outputs Section -->
+      <section id="outputs">
+        <h2>Output Folders</h2>
+        <p>The outputs are stored in 3 sub-folders under the <code>occurrence</code> or <code>abundance</code>
+          directories:</p>
+        <ol>
+          <li><strong>records</strong>: contains map plots (<code>records_[Taxon].png</code>) displaying the
+            geographical positions of the occurrences (green for inside the spatial domain, red for outside). 
+            <em>Note: not available when analyzing abundance data. </em></li>
+          <li><strong>Outputs</strong>: contains the computed missing data matrix results by time range. Output
+            subfolders are named after the active macrogroup or by collapsing the individual taxa names. Files are saved in both
+            <code>.csv</code> and formatted <code>.xlsx</code> sheets (with color-coded cell styles).
+          </li>
+          <li><strong>Rdata</strong>: caches binary files (<code>[Taxon].RData</code>) containing occurrence data frames
+            to avoid re-downloading from the WFS server on subsequent runs. The option "Use local cache (if available)" is
+            present in the configuration panel to enable or disable this feature.</li>
+        </ol>
+      </section>
+
+      <hr>
+
+      <!-- Optimization Section -->
+      <section id="optimization">
+        <h2>Engine Optimization &amp; Memory Safety</h2>
+        <p>To support very large datasets without exhausting local memory or freezing the system:</p>
+        <ol>
+          <li><strong>WFS Paging</strong>: large queries are automatically split into manageable chunks (20,000 records
+            per page) to prevent server timeouts and allow frequent yielding to the event loop for connection monitoring and cancellation checks.
+          </li>
+          <li><strong>Sequential Fallback Check</strong>: computations run in parallel on multiple cores for small
+            datasets, but automatically fall back to sequential execution for large datasets (&gt;100,000 rows) to prevent socket
+            serialization/write crashes on Windows.</li>
+          <li><strong>Distinct Coordinates Plotting</strong>: ecoregion occurrence maps
+            (<code>records_[Taxa].png</code>)
+            are generated by plotting only unique coordinate pairs, saving gigabytes of graphics memory.</li>
+        </ol>
+        <p>
+          <em>Note: the averaged time to download and analyze 100000 records is about 1 minute.</em>
+        </p>
+      </section>
+
+      <hr>
+
+      <!-- Analysis Section -->
+      <section id="analysis">
+        <h2>Analysis &amp; Visualizations</h2>
+        <p>After hitting <strong>Run Pipeline Execution</strong>, the results can be explored across five tabs:</p>
+
+        <div style="margin-top: 1.5rem; margin-bottom: 2rem;">
+          <h3 style="font-size: 1.2rem; color: var(--primary-color); margin-bottom: 0.5rem;">1. Execution Log</h3>
+          <p>Displays console progress alerts (including the exact number of records downloaded or loaded from cache for
+            each taxon) and a direct Excel download button.</p>
+          <img src="utilities/Execution_Log_screenshot.png" alt="Execution Log Screenshot"
+            style="width: 100%; height: auto; max-width: 100%; display: block; margin: 1rem 0; border-radius: 8px; border: 1px solid var(--border-color);">
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1.2rem; color: var(--primary-color); margin-bottom: 0.5rem;">2. Records</h3>
+          <p>Provides a zoomable interactive map of download locations <em>(not available for gridded abundance
+              data)</em>.</p>
+          <img src="utilities/Records_screenshot.png" alt="Records Screenshot"
+            style="width: 100%; height: auto; max-width: 100%; display: block; margin: 1rem 0; border-radius: 8px; border: 1px solid var(--border-color);">
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1.2rem; color: var(--primary-color); margin-bottom: 0.5rem;">3. by TempCov</h3>
+          <p>Visualizes the missing data matrix for each temporal window, styled by likelihood of missing data (Unlikely
+            &le; 33%, Likely 33-66%, Very Likely &gt; 66%), alongside a boxplot distribution chart.</p>
+          <img src="utilities/By_TempCov_screenshot.png" alt="By TempCov Screenshot"
+            style="width: 100%; height: auto; max-width: 100%; display: block; margin: 1rem 0; border-radius: 8px; border: 1px solid var(--border-color);">
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1.2rem; color: var(--primary-color); margin-bottom: 0.5rem;">4. ALL</h3>
+          <p>Aggregates the 1st quartile summaries across all selected temporal ranges, mapped on a radar plot.</p>
+          <img src="utilities/all_screenshot.png" alt="All Screenshot"
+            style="width: 100%; height: auto; max-width: 100%; display: block; margin: 1rem 0; border-radius: 8px; border: 1px solid var(--border-color);">
+        </div>
+
+        <!-- DTO-BioFlow Modification: Added explanation for Group A - Group B comparisons and multi-period averages. -->
+        <div style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1.2rem; color: var(--primary-color); margin-bottom: 0.5rem;">5. Comparison</h3>
+          <p>Provides side-by-side comparative scoring matrices displaying net changes between selected target (focus) and baseline (reference) time periods, 
+            configurable as individual or multiple temporal ranges. For each cell (ecoregion/taxon), if multiple time periods are selected in a group (e.g.,
+            '2000_2009' and '2010_2019' in Group B), the tool automatically calculates the arithmetic mean of the
+            missing data percentages for those periods first. The comparison matrix then displays the cell-by-cell
+            difference: <code>Mean(Group A - Focus) - Mean(Group B - Reference)</code>.</p>
+          <img src="utilities/comparison_screenshot.png" alt="Comparison Screenshot"
+            style="width: 100%; height: auto; max-width: 100%; display: block; margin: 1rem 0; border-radius: 8px; border: 1px solid var(--border-color);">
+        </div>
+      </section>
+
+      <hr>
+
+      <!-- Video Tutorial Section -->
+      <section id="video-tutorial">
+        <h2>Video Tutorial</h2>
+        <p>A video tutorial demonstrating how to use the <code>Missing Data Matrix</code> application, configure target
+          taxa, filter spatio-temporal options, and export analytical outcomes.</p>
+        <div style="margin-top: 1.5rem; text-align: center;">
+          <video controls preload="metadata" style="width: 100%; max-width: 960px; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);">
+            <source src="utilities/video tutorial.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </section>
+    </article>
+  </div>
+
+  <!-- Footer Section with EU Disclaimer -->
+  <footer class="brand-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About DTO-BioFlow</h4>
+        <p style="font-size:0.85rem; color:#a0aec0; margin-bottom: 1rem;">
+          DTO-BioFlow is a European project focused on integrating biodiversity monitoring data flows into the Digital
+          Twin Ocean (DTO) to support policies and research.
+        </p>
+        <p style="font-size:0.85rem; color:#a0aec0;">
+          Lead Beneficiary of D2.8 Report: <strong>COISPA Foundation</strong>.
+        </p>
+      </div>
+      <div class="footer-section">
+        <h4>Project Resources</h4>
+        <ul class="footer-links">
+          <li><a href="https://dto-bioflow.eu/" target="_blank">DTO-BioFlow Website</a></li>
+          <li><a href="https://emodnet.ec.europa.eu/en/biology" target="_blank">EMODnet Biology</a></li>
+          <li><a href="https://zenodo.org/records/17431251?preview_file=D2.8+Report+on+the+impact+of+missing+data.pdf"
+              target="_blank">Deliverable 2.8</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <div class="funding-banner" style="background: transparent; border: none; padding: 0;">
+          <img src="utilities/Funded by European Union.png" alt="Funded by the European Union"
+            style="max-height: 55px; width: auto; display: block; border-radius: 4px;">
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span></span>
+      <div class="social-links">
+        <a class="social-link" href="https://x.com/DTOBioFlow" target="_blank" title="X (Twitter)">X</a>
+        <a class="social-link" href="https://www.youtube.com/@DTOBioFlowProject" target="_blank"
+          title="YouTube">YouTube</a>
+        <a class="social-link" href="https://www.linkedin.com/company/dto-bio-flow/" target="_blank"
+          title="LinkedIn">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Run App Instructions Dialog / Modal -->
+  <div class="modal" id="runAppModal">
+    <div class="modal-content">
+      <button class="close-modal" id="closeModalBtn">&times;</button>
+      <h3 style="margin-top: 0; color: var(--primary-color);">Running the shiny application</h3>
+      <hr style="margin: 1rem 0;">
+
+      <h4 style="font-size: 1.05rem; margin-bottom: 0.5rem;">Option A: Windows Launcher (Recommended)</h4>
+      <p style="font-size: 0.9rem;">Double-click the file <code>run_app.bat</code> in the workspace root directory. This
+        automatically checks for Rscript and opens the browser interface.</p>
+
+      <h4 style="font-size: 1.05rem; margin-top: 1rem; margin-bottom: 0.5rem;">Option B: Run from R/RStudio console</h4>
+      <p style="font-size: 0.9rem;">Open R or RStudio, set the working directory to this folder, and run:</p>
+      <pre style="padding: 0.75rem; font-size: 0.85rem;"><code class="language-r">shiny::runApp(".")</code></pre>
+
+      <h4 style="font-size: 1.05rem; margin-top: 1.2rem; margin-bottom: 0.5rem;">R Installation Instructions</h4>
+      <p style="font-size: 0.85rem; margin-bottom: 0.5rem; color: #4a5568;">If R is not installed on your computer:</p>
+      <ul style="font-size: 0.85rem; margin-left: 1.5rem; color: #4a5568;">
+        <li><strong>Windows</strong>: Download and run the base installer from <a
+            href="https://cran.r-project.org/bin/windows/base/" target="_blank">CRAN Windows</a>.</li>
+        <li><strong>macOS</strong>: Download the appropriate .pkg installer (Intel or Apple Silicon) from <a
+            href="https://cran.r-project.org/bin/macosx/" target="_blank">CRAN macOS</a>.</li>
+        <li><strong>Linux</strong>: Install <code>r-base</code> via your package manager (e.g.
+          <code>sudo apt install r-base</code> on Ubuntu).
+        </li>
+      </ul>
+      <p style="font-size: 0.85rem; margin-top: 0.5rem; color: #4a5568;">
+        Once installed, open R and run:
+        <code
+          style="display:block; margin-top:0.25rem; font-size:0.8rem; word-break:break-all;">install.packages(c("shiny", "bslib", "emodnet.wfs", "tidyverse", "sf", "terra", "openxlsx2", "DT", "plotly", "lubridate", "base64enc"))</code>
+      </p>
+    </div>
+  </div>
+
+  <!-- Script to handle Run App Modal -->
+  <script>
+    const runBtn = document.getElementById('runAppBtn');
+    const runModal = document.getElementById('runAppModal');
+    const closeModal = document.getElementById('closeModalBtn');
+
+    // Script to handle Interactive Figure 1 Workflow
+    const workflowSteps = [
+      {
+        title: "1. Information Extraction",
+        html: `Biological occurrence/abundance data are downloaded from EMODnet WFS. They are organized in the form of a hierarchical database by including a fixed number of rows which represent every possible combination among the levels of the classification factors. The <strong>classification factors</strong> were designed to summarize all the information in terms of coverage and resolution of the data contained in the EMODnet Biology Lot (see <a href="#fig2"><strong>Figure 2</strong></a>).
+        
+        <div class="figure-container" id="fig2" style="margin-top: 1.5rem;">
+          <img src="utilities/DTO-BioFlow_classification factors chart.png" alt="Figure 2: Chart showing the different levels for each classification factor together with their hierarchical position." class="figure-image" style="width: 100%; height: auto; max-width: 920px; display: block; margin: 0 auto; border-radius: 8px; border: 1px solid var(--border-color);">
+          <p class="figure-caption">
+            <strong>Figure 2</strong>: Chart showing the different levels for each classification factor together with their hierarchical position.
+          </p>
+          <p>
+            <em>Note: Since the levels of classification factors have been defined based on the current characteristics
+            and dimensions of the data contained in the <a href="https://emodnet.ec.europa.eu/en/biology" target="_blank">EMODnet Biology lot</a>, 
+            changing these won't be possible through the app.
+            </em>
+          </p>
+        </div>`
+      },
+      {
+        title: "2. Scoring",
+        html: `For each combination in the database hierarchy (i.e., database row), a score is dynamically calculated ranking the data availability by means of an assessment key (see <a href="#fig3"><strong>Figure 3</strong></a>):
+
+        <div class="figure-container" id="fig3" style="max-width: 620px; margin: 1.5rem auto;">
+          <img src="utilities/Figure 3.jpg" alt="Figure 3: Assessment key." class="figure-image" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color);">
+          <p class="figure-caption">
+            <strong>Figure 3</strong>: Assessment key.
+          </p>
+        </div>
+
+        The key includes discrete and continuous numbers to score resolutions and coverages respectively, where: 0 indicates the availability of information and 1 the total absence, while all the intermediate numbers represent partially available/missing data. High-resolution availability scores (0) are propagated automatically to lower resolutions (e.g., species level data informs genus and family records). Criteria used to score information were hence settled as follows:
+        <ul style="margin-left: 2rem; margin-top: 0.5rem; margin-bottom: 0.5rem;">
+          <li>for both taxonomical and spatio-temporal resolutions the discrete score can be 1 (i.e., missing data) or 0 (i.e., available data); </li>
+          <li>for temporal coverage the continuous score was based on the presence of at least one record for each year included in the corresponding time range; </li>
+          <li>for the spatial coverage the resulting continuous score was evaluated based on the absolute frequency of the number of ICES statistical rectangles having at least one observation by ICES ecoregion. The related shape files can be found in <a
+              href="Clip_ICES_ecoregions_Estensione_Med">Clip_ICES_ecoregions_Estensione_Med</a>.</li>
+        </ul>`
+      },
+      {
+        title: "3. Selection Process",
+        html: `This step was developed to be able to investigate the missing data scores across different spatio-temporal coverages and resolutions by selecting specific levels of the classification factors. Since the formula for assessing the missing data for each single cells of the missing data matrix is: 
+        
+        <div class="figure-container" id="fig4" style="max-width: 320px; margin: 1.5rem auto;">
+          <img src="utilities/Figure 4.jpg" alt="Figure 4: Missing data matrix formula." class="figure-image" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color);">
+        </div>
+        
+        where <em>s</em> is the taxonomical resolution, <em>l</em> the layer intended as response variable type (e.g., occurrence, abundance), and <em>f</em> the classification factor. <em>score<sub>f</sub></em> is referring to the numbers originate from the assessment key (<a href="#fig3"><strong>Figure 3</strong></a>); while <em>score<sub>f</sub></em> NULL indicates that the <em>score<sub>f</sub></em> is not applicable as direct result of such a selection process. Therefore, the database size and weightings are updated dynamically based on user selections which will result in different outcomes.`
+      },
+      {
+        title: "4. Missing Data Matrix",
+        html: `Aggregated results are visualized as matrices by ICES Ecoregion, fixed time ranges and taxa analysed. 
+        The shiny dashboard (<a href="app.R">app.R</a>) then allows to visualize and eventually aggregate outcomes as <strong>percentages of missing data</strong>. 
+        <br><br>
+        The <strong>first quartile</strong> (25<sup>th</sup> percentile) of the frequency distribution of the set of percentages is used to show the results of different taxonomic, spatial and/or temporal aggregations. These quartiles are categorized into three levels according to the probability (named "Likelihood") of getting missing data:  
+        <ul style="margin-left: 2rem; margin-top: 0.5rem; margin-bottom: 0.5rem;">
+          <li><strong>Unlikely</strong>: the percentage of missing data at the first quartile is less than 33%, </li>
+          <li><strong>Likely</strong>: the percentage of missing data at the first quartile is between 33% and 66%, </li>
+          <li><strong>Very Likely</strong>: the percentage of missing data at the first quartile is greater than 66%.</li>
+        </ul>
+        Such a categorisation allows to directly apply different assessment approaches on the distribution of missing data, as the risk-based approach developed in the <a href="https://zenodo.org/records/17431251?preview_file=D2.8+Report+on+the+impact+of+missing+data.pdf" target="_blank">D2.8</a>.`
+      }
+    ];
+
+    function showWorkflowStep(stepNum) {
+      const steps = document.querySelectorAll('.workflow-step');
+      steps.forEach((step, idx) => {
+        if (idx === stepNum - 1) {
+          step.classList.add('active');
+          step.style.backgroundColor = 'var(--primary-light)';
+          step.style.borderColor = 'var(--primary-color)';
+          step.style.boxShadow = '0 4px 6px rgba(0,0,0,0.05)';
+        } else {
+          step.classList.remove('active');
+          step.style.backgroundColor = '#ffffff';
+          step.style.borderColor = 'var(--border-color)';
+          step.style.boxShadow = 'none';
+        }
+      });
+
+      const stepInfo = workflowSteps[stepNum - 1];
+      document.getElementById('workflow-step-title').innerText = stepInfo.title;
+      document.getElementById('workflow-step-text').innerHTML = stepInfo.html;
+    }
+
+    runBtn.addEventListener('click', () => {
+      runModal.classList.add('active');
+    });
+
+    closeModal.addEventListener('click', () => {
+      runModal.classList.remove('active');
+    });
+
+    // Close modal when clicking outside the box
+    window.addEventListener('click', (e) => {
+      if (e.target === runModal) {
+        runModal.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+
+</html>
