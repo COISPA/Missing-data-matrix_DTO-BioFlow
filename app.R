@@ -156,6 +156,141 @@ ui <- page_sidebar(
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
       }
+
+      /* Snug spacing for unzip reminder note right beneath absolute local path input */
+      #work_dir {
+        margin-bottom: 0 !important;
+      }
+      .shiny-input-container:has(#work_dir) {
+        margin-bottom: 14px !important;
+      }
+      .unzip-note {
+        display: block !important;
+        font-size: 0.70rem !important;
+        font-style: italic !important;
+        color: #6c757d !important;
+        margin-top: 2px !important;
+        margin-bottom: 0 !important;
+        line-height: 1.1 !important;
+      }
+
+      /* Distinct fill color and styling for Information Extraction section (Warm Amber / Gold) */
+      .section-info-extraction {
+        background-color: #fef7ed !important; /* Soft warm amber / golden ochre */
+        border: 1px solid #fed7aa !important;
+        border-left: 4px solid #d97706 !important;
+        border-radius: 8px !important;
+        padding: 12px 14px 10px 14px !important;
+        margin-bottom: 16px !important;
+        box-shadow: 0 1px 4px rgba(217, 119, 6, 0.08) !important;
+      }
+      .section-info-extraction .form-group {
+        margin-bottom: 10px;
+      }
+
+      /* Distinct fill color and styling for Selection Process section (Ocean Blue) */
+      .section-selection-process {
+        background-color: #edf3fa !important; /* Soft ocean blue */
+        border: 1px solid #b2cfea !important;
+        border-left: 4px solid #167fc9 !important;
+        border-radius: 8px !important;
+        padding: 12px 14px 10px 14px !important;
+        margin-bottom: 16px !important;
+        box-shadow: 0 1px 4px rgba(22, 127, 201, 0.08) !important;
+      }
+      .section-selection-process .form-group {
+        margin-bottom: 10px;
+      }
+
+      /* Tab Header Styling */
+      .nav-tabs {
+        border-bottom: 2px solid #dee2e6;
+      }
+
+      /* Records Tab Header - Same color as Information Extraction (Warm Amber / Gold) */
+      .nav-tabs .nav-link[data-value='Records'],
+      .nav-tabs li a[data-value='Records'] {
+        background-color: #fef7ed !important;
+        color: #92400e !important;
+        border: 1px solid #fed7aa !important;
+        border-bottom: 2px solid #d97706 !important;
+        border-radius: 6px 6px 0 0 !important;
+        margin-right: 4px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+      .nav-tabs .nav-link[data-value='Records']:hover,
+      .nav-tabs li a[data-value='Records']:hover {
+        background-color: #fde68a !important;
+        color: #78350f !important;
+      }
+      .nav-tabs .nav-link[data-value='Records'].active,
+      .nav-tabs li.active a[data-value='Records'] {
+        background-color: #d97706 !important;
+        color: #ffffff !important;
+        border-color: #d97706 #d97706 transparent !important;
+        border-bottom: 2px solid #d97706 !important;
+        font-weight: 600;
+        box-shadow: 0 2px 6px rgba(217, 119, 6, 0.25);
+      }
+      .nav-tabs .nav-link[data-value='Records'].active i,
+      .nav-tabs li.active a[data-value='Records'] i {
+        color: #ffffff !important;
+      }
+
+      /* by TempCov, ALL, Comparison Tab Headers - Same color as Selection Process (Ocean Blue) */
+      .nav-tabs .nav-link[data-value='by TempCov'],
+      .nav-tabs li a[data-value='by TempCov'],
+      .nav-tabs .nav-link[data-value='ALL'],
+      .nav-tabs li a[data-value='ALL'],
+      .nav-tabs .nav-link[data-value='Comparison'],
+      .nav-tabs li a[data-value='Comparison'] {
+        background-color: #edf3fa !important;
+        color: #0b4f8c !important;
+        border: 1px solid #b2cfea !important;
+        border-bottom: 2px solid #167fc9 !important;
+        border-radius: 6px 6px 0 0 !important;
+        margin-right: 4px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+      .nav-tabs .nav-link[data-value='by TempCov']:hover,
+      .nav-tabs li a[data-value='by TempCov']:hover,
+      .nav-tabs .nav-link[data-value='ALL']:hover,
+      .nav-tabs li a[data-value='ALL']:hover,
+      .nav-tabs .nav-link[data-value='Comparison']:hover,
+      .nav-tabs li a[data-value='Comparison']:hover {
+        background-color: #dbeaf7 !important;
+        color: #073560 !important;
+      }
+      .nav-tabs .nav-link[data-value='by TempCov'].active,
+      .nav-tabs li.active a[data-value='by TempCov'],
+      .nav-tabs .nav-link[data-value='ALL'].active,
+      .nav-tabs li.active a[data-value='ALL'],
+      .nav-tabs .nav-link[data-value='Comparison'].active,
+      .nav-tabs li.active a[data-value='Comparison'] {
+        background-color: #167fc9 !important;
+        color: #ffffff !important;
+        border-color: #167fc9 #167fc9 transparent !important;
+        border-bottom: 2px solid #167fc9 !important;
+        font-weight: 600;
+        box-shadow: 0 2px 6px rgba(22, 127, 201, 0.25);
+      }
+      .nav-tabs .nav-link[data-value='by TempCov'].active i,
+      .nav-tabs li.active a[data-value='by TempCov'] i,
+      .nav-tabs .nav-link[data-value='ALL'].active i,
+      .nav-tabs li.active a[data-value='ALL'] i,
+      .nav-tabs .nav-link[data-value='Comparison'].active i,
+      .nav-tabs li.active a[data-value='Comparison'] i {
+        color: #ffffff !important;
+      }
+
+      /* Execution Log Tab Header - Standard (No Color) */
+      .nav-tabs .nav-link[data-value='Execution Log'],
+      .nav-tabs li a[data-value='Execution Log'] {
+        border-radius: 6px 6px 0 0 !important;
+        margin-right: 4px;
+      }
     ")),
     tags$script(HTML("
       $(document).on('shiny:connected', function(event) {
@@ -179,117 +314,130 @@ ui <- page_sidebar(
   sidebar = sidebar(
     title = "Configuration Panel",
     width = 380,
-    tags$h5("Working Directory", style = "font-weight: bold; margin-top: 10px;"),
-    textInput(inputId = "work_dir", label = "Absolute local path", value = getwd()),
-    hr(),
-    tags$h5("Information extraction", style = "font-weight: bold; margin-top: 10px;"),
-    selectInput(inputId = "wfs_service", label = "EMODnet WFS Service Client", choices = c("biology_occurrence_data", "biology_abundance_data"), selected = "biology_occurrence_data"),
-    selectizeInput(
-      inputId = "species", 
-      label = "Target Taxon or Taxa(comma-separated)", 
-      choices = NULL, 
-      options = list(
-        create = TRUE, 
-        placeholder = "Select prebuilt group or type custom taxa..."
-      )
-    ),
-    uiOutput("taxa_level_ui"),
-    # DTO-BioFlow Modification: Reposition cache toggle checkbox.
-    checkboxInput(inputId = "use_cache", label = "Use local cache (if available)", value = TRUE),
-    hr(),
-    tags$h5("Selection process", style = "font-weight: bold; margin-top: 10px;"),
-
-    # Grouped and colored inputs for Temporal Coverage
-    tags$div(
-      style = "font-weight: bold; margin-bottom: 5px;", "Temporal Coverage (time-range)"
-    ),
-    tags$div(
-      style = "color: #7030a0; border-left: 3px solid #7030a0; padding-left: 10px; margin-bottom: 10px;",
+    tags$h5("Working Directory", style = "font-weight: bold; margin-top: 10px; margin-bottom: 8px; color: #2b303a;"),
+    tagAppendChild(
+      textInput(inputId = "work_dir", label = "Absolute local path", value = getwd()),
       tags$div(
-        class = "checkbox",
-        style = "margin-top: 0; margin-bottom: 5px; color: #7030a0;",
-        tags$label(
-          tags$input(id = "select_all_historical", type = "checkbox"),
-          tags$span("Historical", style = "font-weight: bold; color: #7030a0;")
-        )
-      ),
-      checkboxGroupInput(
-        inputId = "temp_cov_historical",
-        label = NULL,
-        choices = c("1880_1909", "1910_1939", "1940_1969", "1970_1999"),
-        selected = character(0)
-      )
-    ),
-    tags$div(
-      style = "color: #cc00cc; border-left: 3px solid #cc00cc; padding-left: 10px; margin-bottom: 15px;",
-      tags$div(
-        class = "checkbox",
-        style = "margin-top: 0; margin-bottom: 5px; color: #cc00cc;",
-        tags$label(
-          tags$input(id = "select_all_present", type = "checkbox"),
-          tags$span("Present", style = "font-weight: bold; color: #cc00cc;")
-        )
-      ),
-      # DTO-BioFlow Modification: Clear defaults in present temporal coverage.
-      checkboxGroupInput(
-        inputId = "temp_cov_present",
-        label = NULL,
-        choices = c("2000_2009", "2010_2019", "2020_2026"),
-        selected = character(0)
+        tags$em("remember to unzip the folder!"),
+        class = "unzip-note"
       )
     ),
 
-    # Grouped and colored inputs for Spatial Coverage
+    # Section 1: Information extraction (Filled with soft Warm Amber / Gold)
     tags$div(
-      style = "font-weight: bold; margin-bottom: 5px;", "Spatial Coverage (Ecoregion)"
-    ),
-    tags$div(
-      style = "color: #385723; border-left: 3px solid #385723; padding-left: 10px; margin-bottom: 10px;",
-      tags$div(
-        class = "checkbox",
-        style = "margin-top: 0; margin-bottom: 5px; color: #385723;",
-        tags$label(
-          tags$input(id = "select_all_fao37", type = "checkbox"),
-          tags$span("FAO 37", style = "font-weight: bold; color: #385723;")
+      class = "section-info-extraction",
+      tags$h5("Information extraction", style = "font-weight: bold; margin-top: 0; margin-bottom: 12px; color: #92400e;"),
+      selectInput(inputId = "wfs_service", label = "EMODnet WFS Service Client", choices = c("biology_occurrence_data", "biology_abundance_data"), selected = "biology_occurrence_data"),
+      selectizeInput(
+        inputId = "species", 
+        label = "Target Taxon or Taxa(comma-separated)", 
+        choices = NULL, 
+        options = list(
+          create = TRUE, 
+          placeholder = "Select prebuilt group or type custom taxa..."
         )
       ),
-      # DTO-BioFlow Modification: Clear defaults in FAO 37 spatial coverage.
-      checkboxGroupInput(
-        inputId = "spat_cov_fao37",
-        label = NULL,
-        choices = c(
-          "Adriatic Sea", "Aegean-Levantine Sea", "Ionian Sea and the Central Mediterranean Sea",
-          "Western Mediterranean Sea", "Black Sea"
-        ),
-        selected = character(0)
-      )
+      uiOutput("taxa_level_ui"),
+      # DTO-BioFlow Modification: Reposition cache toggle checkbox.
+      checkboxInput(inputId = "use_cache", label = "Use local cache (if available)", value = TRUE)
     ),
+
+    # Section 2: Selection process (Filled with soft Ocean Blue)
     tags$div(
-      style = "color: #595959; border-left: 3px solid #595959; padding-left: 10px; margin-bottom: 15px;",
+      class = "section-selection-process",
+      tags$h5("Selection process", style = "font-weight: bold; margin-top: 0; margin-bottom: 12px; color: #0b4f8c;"),
+
+      # Grouped and colored inputs for Temporal Coverage
       tags$div(
-        class = "checkbox",
-        style = "margin-top: 0; margin-bottom: 5px; color: #595959;",
-        tags$label(
-          tags$input(id = "select_all_fao27", type = "checkbox"),
-          tags$span("FAO 27", style = "font-weight: bold; color: #595959;")
+        style = "font-weight: bold; margin-bottom: 5px;", "Temporal Coverage (time-range)"
+      ),
+      tags$div(
+        style = "color: #7030a0; border-left: 3px solid #7030a0; padding-left: 10px; margin-bottom: 10px;",
+        tags$div(
+          class = "checkbox",
+          style = "margin-top: 0; margin-bottom: 5px; color: #7030a0;",
+          tags$label(
+            tags$input(id = "select_all_historical", type = "checkbox"),
+            tags$span("Historical", style = "font-weight: bold; color: #7030a0;")
+          )
+        ),
+        checkboxGroupInput(
+          inputId = "temp_cov_historical",
+          label = NULL,
+          choices = c("1880_1909", "1910_1939", "1940_1969", "1970_1999"),
+          selected = character(0)
         )
       ),
-      checkboxGroupInput(
-        inputId = "spat_cov_fao27",
-        label = NULL,
-        choices = c(
-          "Arctic Ocean", "Azores", "Baltic Sea", "Barents Sea", "Bay of Biscay and the Iberian Coast",
-          "Celtic Seas", "Faroes", "Greater North Sea", "Greenland Sea", "Iceland Sea",
-          "Norwegian Sea", "Oceanic Northeast Atlantic"
+      tags$div(
+        style = "color: #cc00cc; border-left: 3px solid #cc00cc; padding-left: 10px; margin-bottom: 15px;",
+        tags$div(
+          class = "checkbox",
+          style = "margin-top: 0; margin-bottom: 5px; color: #cc00cc;",
+          tags$label(
+            tags$input(id = "select_all_present", type = "checkbox"),
+            tags$span("Present", style = "font-weight: bold; color: #cc00cc;")
+          )
         ),
-        selected = character(0)
-      )
+        # DTO-BioFlow Modification: Clear defaults in present temporal coverage.
+        checkboxGroupInput(
+          inputId = "temp_cov_present",
+          label = NULL,
+          choices = c("2000_2009", "2010_2019", "2020_2026"),
+          selected = character(0)
+        )
+      ),
+
+      # Grouped and colored inputs for Spatial Coverage
+      tags$div(
+        style = "font-weight: bold; margin-bottom: 5px;", "Spatial Coverage (Ecoregion)"
+      ),
+      tags$div(
+        style = "color: #385723; border-left: 3px solid #385723; padding-left: 10px; margin-bottom: 10px;",
+        tags$div(
+          class = "checkbox",
+          style = "margin-top: 0; margin-bottom: 5px; color: #385723;",
+          tags$label(
+            tags$input(id = "select_all_fao37", type = "checkbox"),
+            tags$span("FAO 37", style = "font-weight: bold; color: #385723;")
+          )
+        ),
+        # DTO-BioFlow Modification: Clear defaults in FAO 37 spatial coverage.
+        checkboxGroupInput(
+          inputId = "spat_cov_fao37",
+          label = NULL,
+          choices = c(
+            "Adriatic Sea", "Aegean-Levantine Sea", "Ionian Sea and the Central Mediterranean Sea",
+            "Western Mediterranean Sea", "Black Sea"
+          ),
+          selected = character(0)
+        )
+      ),
+      tags$div(
+        style = "color: #595959; border-left: 3px solid #595959; padding-left: 10px; margin-bottom: 15px;",
+        tags$div(
+          class = "checkbox",
+          style = "margin-top: 0; margin-bottom: 5px; color: #595959;",
+          tags$label(
+            tags$input(id = "select_all_fao27", type = "checkbox"),
+            tags$span("FAO 27", style = "font-weight: bold; color: #595959;")
+          )
+        ),
+        checkboxGroupInput(
+          inputId = "spat_cov_fao27",
+          label = NULL,
+          choices = c(
+            "Arctic Ocean", "Azores", "Baltic Sea", "Barents Sea", "Bay of Biscay and the Iberian Coast",
+            "Celtic Seas", "Faroes", "Greater North Sea", "Greenland Sea", "Iceland Sea",
+            "Norwegian Sea", "Oceanic Northeast Atlantic"
+          ),
+          selected = character(0)
+        )
+      ),
+      selectInput(inputId = "tax_res", label = "Taxonomic Resolution", choices = c("species", "genus", "family", "order_class"), selected = "species"),
+      selectInput(inputId = "temp_res", label = "Temporal Resolution", choices = c("day_week", "month_season", "annual"), selected = "day_week"),
+      # DTO-BioFlow Modification: Replaced choices labels.
+      selectInput(inputId = "spat_res", label = "Spatial Resolution", choices = c("geographical coordinates" = "geom_point", "shape/grid" = "geom_shape"), selected = "geom_point")
     ),
-    selectInput(inputId = "tax_res", label = "Taxonomic Resolution", choices = c("species", "genus", "family", "order_class"), selected = "species"),
-    selectInput(inputId = "temp_res", label = "Temporal Resolution", choices = c("day_week", "month_season", "annual"), selected = "day_week"),
-    # DTO-BioFlow Modification: Replaced choices labels.
-    selectInput(inputId = "spat_res", label = "Spatial Resolution", choices = c("geographical coordinates" = "geom_point", "shape/grid" = "geom_shape"), selected = "geom_point"),
-    hr(),
     actionButton("run_query", "Run Pipeline Execution", class = "btn-success w-100"),
     actionButton("exit_app", "Exit Application", class = "btn-danger w-100 mt-2", icon = icon("power-off"))
   ),
@@ -299,6 +447,7 @@ ui <- page_sidebar(
     title = "Analysis & Visualizations",
     nav_panel(
       title = "Execution Log", 
+      value = "Execution Log",
       icon = icon("terminal"), 
       card_body(
         verbatimTextOutput("console_log"),
@@ -318,6 +467,7 @@ ui <- page_sidebar(
     ),
     nav_panel(
       title = "by TempCov",
+      value = "by TempCov",
       icon = icon("table"),
       card_body(
         fillable = FALSE,
@@ -333,6 +483,7 @@ ui <- page_sidebar(
     ),
     nav_panel(
       title = "ALL",
+      value = "ALL",
       icon = icon("globe"),
       card_body(
         fillable = FALSE,
@@ -346,6 +497,7 @@ ui <- page_sidebar(
     ),
     nav_panel(
       title = "Comparison",
+      value = "Comparison",
       icon = icon("scale-balanced"),
       card_body(
         fillable = FALSE,
@@ -659,8 +811,13 @@ server <- function(input, output, session) {
       "Missing_data_by_TempCov.xlsx"
     },
     content = function(file) {
-      species_vec <- trimws(strsplit(input$species, ",")[[1]])
-      taxa_folder_name <- paste(species_vec, collapse = "_")
+      macro <- isolate(active_macrogroup())
+      taxa_folder_name <- if (!is.null(macro) && macro != "") {
+        macro
+      } else {
+        species_vec <- trimws(strsplit(input$species, ",")[[1]])
+        paste(species_vec, collapse = "_")
+      }
       type_folder <- ifelse(input$wfs_service == "biology_abundance_data", "abundance", "occurrence")
       local_file <- file.path(input$work_dir, type_folder, "Outputs", taxa_folder_name, "Missing data by TempCov.xlsx")
       if (file.exists(local_file)) {

@@ -178,6 +178,82 @@
       margin: 2rem 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Scroll margin to ensure sticky navbar never obscures section headings */
+    section[id],
+    h2[id],
+    h3[id],
+    h4[id] {
+      scroll-margin-top: 115px;
+    }
+
+    /* Sticky Quick Section Navigation Bar - Full Width Justified */
+    .readme-navbar {
+      position: sticky;
+      top: 12px;
+      z-index: 900;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.5rem;
+      margin: 1.5rem 0 2rem 0;
+      box-shadow: 0 4px 14px rgba(11, 79, 140, 0.08);
+      width: 100%;
+    }
+
+    .readme-nav-links {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.45rem;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    .readme-nav-links .nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--primary-color);
+      background-color: #f0f6fc;
+      border: 1px solid #d0e2f2;
+      padding: 0.65rem 0.35rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      line-height: 1.25;
+      text-decoration: none !important;
+      transition: all 0.2s ease;
+    }
+
+    .readme-nav-links .nav-item:hover {
+      background-color: var(--primary-color);
+      color: #ffffff !important;
+      border-color: var(--primary-color);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(11, 79, 140, 0.22);
+    }
+
+    .readme-nav-links .nav-item:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1100px) {
+      .readme-nav-links {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .readme-nav-links {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     /* Action Buttons styling */
     .button-group {
       display: flex;
@@ -499,7 +575,7 @@
               A tool to assess the status of missing data within EMODnet Biology
             </p>
             <p style="margin-bottom: 0; color: #4a5568; font-size: 0.95rem;">
-              <strong>Institution</strong>: COISPA ETS Foundation &nbsp;|&nbsp; <strong>App Version</strong>: 1.1
+              <strong>Institution</strong>: COISPA ETS Foundation &nbsp;|&nbsp; <strong>App Version</strong>: 1.2
             </p>
           </div>
           <a href="https://www.fondazionecoispa.org/en" target="_blank"
@@ -536,6 +612,19 @@
       </section>
 
       <hr>
+
+      <!-- Section Navigation Menu -->
+      <nav class="readme-navbar" aria-label="Quick Section Navigation">
+        <div class="readme-nav-links">
+          <a href="#description" class="nav-item">Description</a>
+          <a href="#installation" class="nav-item">Installation</a>
+          <a href="#configuration" class="nav-item">Configuration</a>
+          <a href="#outputs" class="nav-item">Output Folders</a>
+          <a href="#optimization" class="nav-item">Engine Optimization &amp; Memory Safety</a>
+          <a href="#analysis" class="nav-item">Analysis &amp; Visualizations</a>
+          <a href="#video-tutorial" class="nav-item">Video Tutorial</a>
+        </div>
+      </nav>
 
       <!-- Description Section -->
       <section id="description">
@@ -896,12 +985,16 @@ C:/Users/Username/Documents/COISPA/DTO_BioFlow/missing_data_matrix_R</code></pre
       <div class="footer-section">
         <h4>About DTO-BioFlow</h4>
         <p style="font-size:0.85rem; color:#a0aec0; margin-bottom: 1rem;">
-          DTO-BioFlow is a European project focused on integrating biodiversity monitoring data flows into the Digital
+          DTO-BioFlow is a European Union project focused on integrating biodiversity monitoring data flows into the Digital
           Twin Ocean (DTO) to support policies and research.
         </p>
         <p style="font-size:0.85rem; color:#a0aec0;">
           Lead Beneficiary of D2.8 Report: <strong>COISPA Foundation</strong>.
         </p>
+        <div class="funding-banner" style="background: transparent; border: none; padding: 0;">
+          <img src="utilities/Funded by European Union.png" alt="Funded by the European Union"
+            style="max-height: 55px; width: auto; display: block; border-radius: 4px;">
+        </div>
       </div>
       <div class="footer-section">
         <h4>Project Resources</h4>
@@ -913,13 +1006,22 @@ C:/Users/Username/Documents/COISPA/DTO_BioFlow/missing_data_matrix_R</code></pre
         </ul>
       </div>
       <div class="footer-section">
-        <div class="funding-banner" style="background: transparent; border: none; padding: 0;">
-          <img src="utilities/Funded by European Union.png" alt="Funded by the European Union"
-            style="max-height: 55px; width: auto; display: block; border-radius: 4px;">
+        <!-- License Block Creative Commons CC BY 4.0 -->
+        <div style="max-width: 1200px; margin: 0 auto 1.5rem auto; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85rem; color: #a0aec0; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">
+          <img alt="Creative Commons License" style="border-width:0; display: block;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+          </a>
+          <span>
+          This work, documentation, and non-software deliverables are licensed under a 
+          <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" target="_blank" style="font-size:0.85rem; color:#a0aec0;">Creative Commons Attribution 4.0 International License</a>. 
+          <p style="font-size:0.85rem; color:#a0aec0;">
+          Developed by <strong>COISPA ETS Foundation</strong> under the <strong>DTO-BioFlow Project</strong> (Funded by the European Union).
+          </p>
+          </span>
         </div>
       </div>
     </div>
-
+    
     <div class="footer-bottom">
       <span></span>
       <div class="social-links">

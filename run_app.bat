@@ -1,7 +1,7 @@
 @echo off
-title DTO-BioFlow Skills-Matrix Launcher
+title DTO-BioFlow Missing Data Matrix Launcher
 echo =======================================================
-echo   Launching DTO-BioFlow Skills-Matrix Shiny Application  
+echo   Launching DTO-BioFlow Missing Data Matrix Shiny Application  
 echo =======================================================
 echo.
 echo Checking for R environment...

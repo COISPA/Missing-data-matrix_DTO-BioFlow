@@ -393,8 +393,9 @@ run_missing_data_pipeline <- function(inputs, update_progress, log_callback = NU
   
   # README text
   readme_text <- 'Here the assessment of missing data within EMODnet Biology is showed. For each phyla, and for each area (i.e. spatial coverage) a percentage of missing data from 0 to 1 is calculated togheter with first quartile both by taxa and area. The analysis was repeated for each time range previously selected and showed in different sheets. Furthermore, a summary of first quartile values for each area and time range is showed in "ALL" sheet following temporal, spatial and taxonomic aggregations described here.'
+  last_col_idx <- max(14, 13 + length(species))
   wb$add_data(sheet = "Execution_log", x = readme_text, dims = "A1")
-  wb$merge_cells(sheet = "Execution_log", cols = 1:10, rows = 1)
+  wb$merge_cells(sheet = "Execution_log", dims = paste0("A1:", int2col(last_col_idx), "1"))
   wb$add_font(sheet = "Execution_log", dims = "A1", size = 11)
   
   # Selected temporal coverages
@@ -411,16 +412,19 @@ run_missing_data_pipeline <- function(inputs, update_progress, log_callback = NU
   fao27_eco_all <- c("Arctic Ocean", "Azores", "Baltic Sea", "Barents Sea", "Bay of Biscay and the Iberian Coast", "Celtic Seas", "Faroes", "Greater North Sea", "Greenland Sea", "Iceland Sea", "Norwegian Sea", "Oceanic Northeast Atlantic")
 
   # Headers
-  wb$add_data(sheet = "Execution_log", x = "Time ranges (arranged by sheet):", dims = "A5")
+  wb$add_data(sheet = "Execution_log", x = "Temporal coverage (arranged by sheet):", dims = "A5")
   wb$add_font(sheet = "Execution_log", dims = "A5", bold = TRUE)
 
   wb$add_data(sheet = "Execution_log", x = "Spatial coverage:", dims = "E5")
   wb$add_font(sheet = "Execution_log", dims = "E5", bold = TRUE)
 
-  wb$add_data(sheet = "Execution_log", x = "Species analyzed:", dims = "J5")
-  wb$add_font(sheet = "Execution_log", dims = "J5", bold = TRUE)
+  wb$add_data(sheet = "Execution_log", x = "Resolutions:", dims = "I5")
+  wb$add_font(sheet = "Execution_log", dims = "I5", bold = TRUE)
 
-  # Table 1: Time ranges
+  wb$add_data(sheet = "Execution_log", x = "Taxa analyzed:", dims = "M5")
+  wb$add_font(sheet = "Execution_log", dims = "M5", bold = TRUE)
+
+  # Table 1: Temporal coverage
   current_r <- 6
   if (length(hist_years) > 0) {
     wb$add_data(sheet = "Execution_log", x = "Historical", dims = paste0("A", current_r))
@@ -480,33 +484,53 @@ run_missing_data_pipeline <- function(inputs, update_progress, log_callback = NU
     current_spat_r <- current_spat_r + length(fao27_eco)
   }
 
-  # Table 3: Species analyzed
-  wb$add_data(sheet = "Execution_log", x = "Macrogroup", dims = "J6")
-  wb$add_font(sheet = "Execution_log", dims = "J6", bold = TRUE)
+  # Table 3: Resolutions
+  current_res_r <- 6
+  spat_res_label <- if (inputs$spat_res == "geom_point") "geographical coordinates" else if (inputs$spat_res == "geom_shape") "shape/grid" else inputs$spat_res
+  
+  res_items <- list(
+    list(name = "Taxonomic", val = inputs$tax_res, color = "#0b4f8c"),
+    list(name = "Spatial",   val = spat_res_label, color = "#385723"),
+    list(name = "Temporal",  val = inputs$temp_res, color = "#7030a0")
+  )
+  for (res in res_items) {
+    wb$add_data(sheet = "Execution_log", x = res$name, dims = paste0("I", current_res_r))
+    wb$add_font(sheet = "Execution_log", dims = paste0("I", current_res_r), bold = TRUE, color = wb_color(res$color))
+    wb$add_data(sheet = "Execution_log", x = res$val, dims = paste0("J", current_res_r))
+    wb$add_font(sheet = "Execution_log", dims = paste0("J", current_res_r), color = wb_color(res$color))
+    wb$add_border(sheet = "Execution_log", dims = paste0("I", current_res_r, ":J", current_res_r), bottom_border = "thin", left_border = "", right_border = "", top_border = "")
+    wb$add_border(sheet = "Execution_log", dims = paste0("J", current_res_r), left_border = "thin", right_border = "thin", top_border = "", bottom_border = "")
+    current_res_r <- current_res_r + 1
+  }
 
-  wb$add_data(sheet = "Execution_log", x = "Species", dims = "K6")
-  wb$add_font(sheet = "Execution_log", dims = "K6", bold = TRUE)
+  # Table 4: Taxa analyzed
+  wb$add_data(sheet = "Execution_log", x = "Macrogroup", dims = "M6")
+  wb$add_font(sheet = "Execution_log", dims = "M6", bold = TRUE)
 
-  wb$add_data(sheet = "Execution_log", x = "ALL", dims = "J7")
-  wb$add_font(sheet = "Execution_log", dims = "J7", bold = TRUE, color = wb_color("#0b5a82"))
+  wb$add_data(sheet = "Execution_log", x = "Taxon", dims = "N6")
+  wb$add_font(sheet = "Execution_log", dims = "N6", bold = TRUE)
+
+  macro_display <- if (!is.null(inputs$macrogroup_name) && inputs$macrogroup_name != "") inputs$macrogroup_name else "ALL"
+  wb$add_data(sheet = "Execution_log", x = macro_display, dims = "M7")
+  wb$add_font(sheet = "Execution_log", dims = "M7", bold = TRUE, color = wb_color("#0b5a82"))
 
   for (s_idx in seq_along(species)) {
-    col_letter <- int2col(10 + s_idx)
+    col_letter <- int2col(13 + s_idx)
     cell_coord <- paste0(col_letter, "7")
     wb$add_data(sheet = "Execution_log", x = species[s_idx], dims = cell_coord)
     wb$add_font(sheet = "Execution_log", dims = cell_coord, color = wb_color("#0b5a82"))
   }
 
-  last_col_idx <- 10 + length(species)
-  headers_dims <- paste0("J6:", int2col(last_col_idx), "6")
+  last_col_idx <- max(14, 13 + length(species))
+  headers_dims <- paste0("M6:", int2col(last_col_idx), "6")
   wb$add_border(sheet = "Execution_log", dims = headers_dims, bottom_border = "thin", left_border = "", right_border = "", top_border = "")
 
-  data_row_dims <- paste0("J7:", int2col(last_col_idx), "7")
+  data_row_dims <- paste0("M7:", int2col(last_col_idx), "7")
   wb$add_border(sheet = "Execution_log", dims = data_row_dims, bottom_border = "thin", left_border = "", right_border = "", top_border = "")
-  wb$add_border(sheet = "Execution_log", dims = "J6:J7", right_border = "thin", left_border = "", top_border = "", bottom_border = "")
+  wb$add_border(sheet = "Execution_log", dims = "M6:M7", right_border = "thin", left_border = "", top_border = "", bottom_border = "")
 
   # Execution Alerts / Warnings section
-  alert_start_row <- max(current_r, current_spat_r, 8) + 3
+  alert_start_row <- max(current_r, current_spat_r, current_res_r, 8) + 3
   wb$add_data(sheet = "Execution_log", x = "Execution Alerts / Warnings", dims = paste0("A", alert_start_row))
   wb$add_font(sheet = "Execution_log", dims = paste0("A", alert_start_row), bold = TRUE, size = 11)
   
