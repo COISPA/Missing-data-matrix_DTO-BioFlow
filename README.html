@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DTO-BioFlow Missing Data Matrix Documentation</title>
+  <title>MIssing Data EXplorer (MIDEX) Documentation</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,8 +81,11 @@
 
     /* Custom Wave Banner at Top Right */
     .wave-decoration {
-      height: 60px;
-      opacity: 0.8;
+      height: 68px;
+      width: auto;
+      max-width: 520px;
+      opacity: 1;
+      overflow: visible;
     }
 
     /* Primary layout document styles */
@@ -291,6 +294,19 @@
 
     .btn-accent:hover {
       background-color: #008f80;
+    }
+
+    .btn-website {
+      background: linear-gradient(135deg, #003E7A 0%, #0077C8 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 62, 122, 0.22);
+    }
+
+    .btn-website:hover {
+      background: linear-gradient(135deg, #0b223d 0%, #003E7A 100%);
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(0, 62, 122, 0.32);
     }
 
     /* Modal dialog styling */
@@ -537,26 +553,17 @@
 
 <body>
 
-  <!-- Header Section with DTO-BioFlow SVG Logo -->
+  <!-- Header Section with DTO-BioFlow SVG Logo and COISPA Logo -->
   <header class="brand-header">
     <a href="https://dto-bioflow.eu/" target="_blank" class="logo-container"
       style="text-decoration: none; display: inline-block;">
       <img src="utilities/Logo_DTO_Bio-Flow.svg" alt="DTO-BioFlow Logo" class="brand-logo">
     </a>
 
-    <!-- Wave graphics mimicking report design -->
-    <svg class="wave-decoration" viewBox="0 0 400 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 20 40 Q 60 20 100 40 T 180 40 T 260 40 T 340 40" fill="none" stroke="#00a896" stroke-width="2"
-        opacity="0.5" />
-      <path d="M 40 48 Q 80 28 120 48 T 200 48 T 280 48 T 360 48" fill="none" stroke="#167fc9" stroke-width="1.5"
-        opacity="0.4" />
-      <path d="M 10 32 Q 50 12 90 32 T 170 32 T 250 32 T 330 32" fill="none" stroke="#0b4f8c" stroke-width="1"
-        opacity="0.3" />
-      <!-- Small fish silhouettes floating in waves -->
-      <path d="M 110 25 Q 115 22 118 25 T 110 29 Z" fill="#167fc9" opacity="0.6" />
-      <path d="M 210 28 Q 215 25 218 28 T 210 32 Z" fill="#00a896" opacity="0.7" />
-      <path d="M 310 22 Q 315 19 318 22 T 310 26 Z" fill="#0b4f8c" opacity="0.5" />
-    </svg>
+    <a href="https://www.fondazionecoispa.org/en" target="_blank" class="logo-container"
+      style="text-decoration: none; display: inline-block;">
+      <img src="utilities/coispa_logo.svg" alt="COISPA Logo" style="height: 62px; width: auto; object-fit: contain;">
+    </a>
   </header>
 
   <!-- Main Content Layout -->
@@ -565,28 +572,39 @@
     <!-- Primary Document Container -->
     <article class="document-body">
       <section id="doc-title-page">
-        <!-- Title and Metadata Box featuring COISPA Logo on the right side -->
+        <!-- Title and Metadata Box featuring MIDEX Logo on the right side -->
         <div
           style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1.5rem; border-bottom: 2px solid var(--primary-light); padding-bottom: 1.5rem;">
           <div>
-            <h1>Missing Data Matrix DTO-BioFlow</h1>
+            <h1>MIssing Data EXplorer (MIDEX) </h1>
             <p class="lead-text"
               style="font-size: 1.2rem; font-weight: 500; color: var(--primary-color); margin-bottom: 0.5rem; max-width: 750px;">
-              A tool to assess the status of missing data within EMODnet Biology
+              A tool to assess the status of missing data within EMODnet Biology and its potential impact on digital
+              solutions
             </p>
             <p style="margin-bottom: 0; color: #4a5568; font-size: 0.95rem;">
-              <strong>Institution</strong>: COISPA ETS Foundation &nbsp;|&nbsp; <strong>App Version</strong>: 1.2
+              <strong>Institution</strong>: COISPA Foundation &nbsp;|&nbsp; <strong>App Version</strong>: 2
             </p>
           </div>
-          <a href="https://www.fondazionecoispa.org/en" target="_blank"
-            style="margin-left: auto; display: inline-block;">
-            <img src="utilities/coispa_logo.svg" alt="COISPA Logo"
-              style="height: 90px; width: auto; object-fit: contain;">
-          </a>
+          <div style="margin-left: auto; display: inline-block;">
+            <img src="utilities/MIDEX_logo.svg" alt="MIDEX Logo"
+              style="height: 155px; width: auto; object-fit: contain;">
+          </div>
         </div>
 
         <!-- Interactive Action Buttons -->
         <div class="button-group">
+          <a class="btn btn-website" href="https://dto-bioflow.eu/resources" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+              </path>
+            </svg>
+            Website
+          </a>
+
           <button class="btn btn-accent" id="runAppBtn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
               stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
@@ -630,16 +648,21 @@
       <section id="description">
         <h2>Description</h2>
         <p>
-          <code>Missing Data Matrix</code> is a <strong>flexible and adaptable tool</strong> developed under the
-          framework of the project <a href="https://dto-bioflow.eu/" target="_blank">DTO-BioFlow</a> to easy the 
-          assessment of missing data on the ability to develop digital solutions in a functional DTO environment.
-          Biodiversity data currently included in EMODnet Biology lot, and hence into the EDITO infrastructure 
+          <strong style="color: #0b4f8c;">MIDEX</strong> is a <strong>flexible and adaptable tool</strong> developed
+          under the framework of the project <a href="https://dto-bioflow.eu/" target="_blank">DTO-BioFlow</a> to easy
+          the assessment of missing data on the ability to develop digital solutions in a functional DTO environment.
+          Biodiversity data currently included in EMODnet Biology lot, and hence into the EDITO infrastructure
           serving the EU DTO, are assessed through a multistage methodology.
         </p>
-
+        <p>
+          First, <strong>automated analytics</strong> via the <code>Missing Data Matrix</code> is used to
+          semi-quantitatively assess the status of missing data on the platform; the results can then feed into the
+          second step (<strong>decision framework</strong>) to evaluate the applicability and suitability of potential
+          digital products through an <code>impact assessment</code>.
+        </p>
         <p>
           The application is structured with a shiny dashboard (<a href="app.R">app.R</a>) which connects to the core
-          analytical scoring tool in <a href="utilities/Missing data_matrix.R">Missing data_matrix.R</a> and helper of 
+          analytical scoring tool in <a href="utilities/Missing data_matrix.R">Missing data matrix.R</a> and helper of
           spatial/calculation logic in <a href="utilities/function.R">function.R</a>. Biodiversity data are queried and
           downloaded from EMODnet directly into the R environment via the EMODnet Web Feature Service (WFS) package.
         </p>
@@ -648,21 +671,21 @@
         <h3 id="objectives">Objectives &amp; Target Outcomes</h3>
         <p>
           The primary objective of the <code>Missing Data Matrix</code> is to provide information for
-          biodiversity data mobilization efforts. By doing so, the tool provides key outcomes to perform a risk-based
-          assessment on the applicability and suitability of potential digital solutions envisaged in the European
-          Digital Twin Ocean (DTO).
+          biodiversity data mobilization efforts. By doing so, the tool provides key outcomes to perform an <code>impact
+          assessment</code> on the applicability and suitability of potential digital solutions envisaged in the
+          European Digital Twin Ocean (DTO).
         </p>
 
         <!-- Methodology Sub-Section -->
         <h3 id="methodology">Methodology &amp; Assessment Flow</h3>
         <p>
           <strong>Missing data</strong> is defined as data that are lacking or absent because the data does not exist or
-          is unavailable or inaccessible. The current version of the <code>Missing Data Matrix</code> is able to work on 
+          is unavailable or inaccessible. The current version of the <code>Missing Data Matrix</code> is able to work on
           occurrence and abundance of missing data at different taxonomic levels.
         </p>
 
         <p>
-          The tool employs a multi-stage methodology outlined in the <a
+          The <code>Missing Data Matrix</code> employs a multi-stage methodology outlined in the <a
             href="https://zenodo.org/records/17431251?preview_file=D2.8+Report+on+the+impact+of+missing+data.pdf"
             target="_blank">deliverable 2.8</a>. The workflow consists of four main procedural pillars (visualized in <a
             href="#fig1"><strong>Figure 1</strong></a> below):
@@ -712,8 +735,9 @@
 
           <!-- Caption goes immediately below Figure 1 (workflow steps) -->
           <p class="figure-caption" style="margin-top: 1rem; margin-bottom: 0.5rem;">
-            <strong>Figure 1</strong>: Interactive flow chart schematising the assessment procedures of the missing data.
-             Click on each procedural pillar to display detailed information.
+            <strong>Figure 1</strong>: Interactive flow chart schematising the assessment procedures of the missing
+            data.
+            Click on each procedural pillar to display detailed information.
           </p>
         </div>
 
@@ -776,7 +800,7 @@
         <h2>Configuration</h2>
         <p>
           The shiny app provides an interactive <strong>Configuration Panel</strong> sidebar divided into three main
-          sections:
+          sections (arranged by colours):
         </p>
 
         <h3>1. Working Directory</h3>
@@ -792,10 +816,12 @@ C:/Users/Username/Documents/COISPA/DTO_BioFlow/missing_data_matrix_R</code></pre
         <ul>
           <li><strong>EMODnet WFS Service Client</strong>: Choose either <code>biology_occurrence_data</code> (default)
             or
-            <code>biology_abundance_data</code> as gridded DIVA(Data Interpolating Variational Analysis)-based data products.
+            <code>biology_abundance_data</code> as gridded DIVA(Data Interpolating Variational Analysis)-based data
+            products.
           </li>
           <li><strong>Target Taxon or Taxa(comma-separated)</strong>: Here you have to define the taxon/taxa domain to
-            be analyzed using the classical Linnean taxonomic system and hierarchy (species, genus, family, order, class, phylum); it can
+            be analyzed using the classical Linnean taxonomic system and hierarchy (species, genus, family, order,
+            class, phylum); it can
             be entered either as a scientific name of the species (e.g., <em>Nephrops norvegicus</em>) or as higest
             taxonomic levels (e.g., <em>Nephrops</em>, <em>Nephropidae</em>, <em>Decapoda</em>, <em>Malacostraca</em>,
             <em>Arthropoda</em>). Only the taxa with an accepted name (intended as valid aphiaID) can be queried and
@@ -808,8 +834,10 @@ C:/Users/Username/Documents/COISPA/DTO_BioFlow/missing_data_matrix_R</code></pre
                   taxonomic level (in the example provided above is phylum).</em></li>
               <li>select a prebuilt macrogroup loaded dynamically from <a
                   href="utilities/macrogroups.csv">macrogroups.csv</a>. In such a specific case taxa belonging to
-                different taxonomic levels can be downloaded and analyzed simultaneously. Some default macrogroups have been
-                already defined (e.g. <code>Phytoplankton</code>, <code>Zooplankton</code>, etc..), however the user is free to
+                different taxonomic levels can be downloaded and analyzed simultaneously. Some default macrogroups have
+                been
+                already defined (e.g. <code>Phytoplankton</code>, <code>Zooplankton</code>, etc..), however the user is
+                free to
                 modify them or create new ones by locally editing the <a
                   href="utilities/macrogroups.csv">macrogroups.csv</a>.</li>
             </ul>
@@ -831,7 +859,8 @@ C:/Users/Username/Documents/COISPA/DTO_BioFlow/missing_data_matrix_R</code></pre
         <h4 style="margin-top: 1rem;">Semicolon Hierarchical CSV Definitions</h4>
         <p>
           Prebuilt macrogroups are loaded dynamically from <a href="utilities/macrogroups.csv">macrogroups.csv</a> using
-          a semicolon-separated hierarchical structure (<code>Macrogroup;phylum;class;order;family;genus;species</code>).
+          a semicolon-separated hierarchical structure
+          (<code>Macrogroup;phylum;class;order;family;genus;species</code>).
           The target taxon in each row is resolved as the rightmost non-empty column (lowest rank) and query levels are
           parsed dynamically.
         </p>
@@ -848,7 +877,7 @@ C:/Users/Username/Documents/COISPA/DTO_BioFlow/missing_data_matrix_R</code></pre
           </li>
           <li><strong>Spatial Coverage (Ecoregion)</strong>: Select the target Mediterranean ecoregions, grouped under
             <strong>FAO 37</strong> (Adriatic Sea, Aegean-Levantine Sea, Ionian Sea, Western Mediterranean, Black Sea)
-            and/or 
+            and/or
             <strong>FAO 27</strong> (Atlantic/Baltic ecoregions).
           </li>
           <li><strong>Taxonomic Resolution</strong>: Choose the minimum taxonomic rank limit (<code>species</code>,
@@ -877,14 +906,17 @@ C:/Users/Username/Documents/COISPA/DTO_BioFlow/missing_data_matrix_R</code></pre
           directories:</p>
         <ol>
           <li><strong>records</strong>: contains map plots (<code>records_[Taxon].png</code>) displaying the
-            geographical positions of the occurrences (green for inside the spatial domain, red for outside). 
-            <em>Note: not available when analyzing abundance data. </em></li>
+            geographical positions of the occurrences (green for inside the spatial domain, red for outside).
+            <em>Note: not available when analyzing abundance data. </em>
+          </li>
           <li><strong>Outputs</strong>: contains the computed missing data matrix results by time range. Output
-            subfolders are named after the active macrogroup or by collapsing the individual taxa names. Files are saved in both
+            subfolders are named after the active macrogroup or by collapsing the individual taxa names. Files are saved
+            in both
             <code>.csv</code> and formatted <code>.xlsx</code> sheets (with color-coded cell styles).
           </li>
           <li><strong>Rdata</strong>: caches binary files (<code>[Taxon].RData</code>) containing occurrence data frames
-            to avoid re-downloading from the WFS server on subsequent runs. The option "Use local cache (if available)" is
+            to avoid re-downloading from the WFS server on subsequent runs. The option "Use local cache (if available)"
+            is
             present in the configuration panel to enable or disable this feature.</li>
         </ol>
       </section>
@@ -897,10 +929,12 @@ C:/Users/Username/Documents/COISPA/DTO_BioFlow/missing_data_matrix_R</code></pre
         <p>To support very large datasets without exhausting local memory or freezing the system:</p>
         <ol>
           <li><strong>WFS Paging</strong>: large queries are automatically split into manageable chunks (20,000 records
-            per page) to prevent server timeouts and allow frequent yielding to the event loop for connection monitoring and cancellation checks.
+            per page) to prevent server timeouts and allow frequent yielding to the event loop for connection monitoring
+            and cancellation checks.
           </li>
           <li><strong>Sequential Fallback Check</strong>: computations run in parallel on multiple cores for small
-            datasets, but automatically fall back to sequential execution for large datasets (&gt;100,000 rows) to prevent socket
+            datasets, but automatically fall back to sequential execution for large datasets (&gt;100,000 rows) to
+            prevent socket
             serialization/write crashes on Windows.</li>
           <li><strong>Distinct Coordinates Plotting</strong>: ecoregion occurrence maps
             (<code>records_[Taxa].png</code>)
@@ -949,15 +983,27 @@ C:/Users/Username/Documents/COISPA/DTO_BioFlow/missing_data_matrix_R</code></pre
             style="width: 100%; height: auto; max-width: 100%; display: block; margin: 1rem 0; border-radius: 8px; border: 1px solid var(--border-color);">
         </div>
 
-        <!-- DTO-BioFlow Modification: Added explanation for Group A - Group B comparisons and multi-period averages. -->
         <div style="margin-bottom: 2rem;">
           <h3 style="font-size: 1.2rem; color: var(--primary-color); margin-bottom: 0.5rem;">5. Comparison</h3>
-          <p>Provides side-by-side comparative scoring matrices displaying net changes between selected target (focus) and baseline (reference) time periods, 
-            configurable as individual or multiple temporal ranges. For each cell (ecoregion/taxon), if multiple time periods are selected in a group (e.g.,
-            '2000_2009' and '2010_2019' in Group B), the tool automatically calculates the arithmetic mean of the
-            missing data percentages for those periods first. The comparison matrix then displays the cell-by-cell
-            difference: <code>Mean(Group A - Focus) - Mean(Group B - Reference)</code>.</p>
+          <p>Provides side-by-side comparative scoring matrices displaying net changes between selected target (focus)
+            and baseline (reference) time periods, configurable as individual or multiple temporal ranges. For each cell
+            (ecoregion/taxon), if multiple time periods are selected in a group (e.g., '2000_2009' and '2010_2019' in
+            Group B), the tool automatically calculates the arithmetic mean of the missing data percentages for those
+            periods first. The comparison matrix then displays the cell-by-cell difference:
+            <code>Mean(Group A - Focus) - Mean(Group B - Reference)</code>.
+          </p>
           <img src="utilities/comparison_screenshot.png" alt="Comparison Screenshot"
+            style="width: 100%; height: auto; max-width: 100%; display: block; margin: 1rem 0; border-radius: 8px; border: 1px solid var(--border-color);">
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1.2rem; color: var(--primary-color); margin-bottom: 0.5rem;">6. Impact Assessment</h3>
+          <p>The risk-based assessment framework evaluates feasibility of modelling and operational applicability by
+            systematically coupling two core dimensions: qualitative impact severity and the likelihood of encountering missing
+            data. Both the risk rating key and the usage instructions for the interactive table are provided in this
+            tab. The table is customizable including a preset to help users get started with the tool and the
+            option to import <code>Missing Data Matrix</code> outcomes as likelihood into the risk-based assessment utility.</p>
+          <img src="utilities/Impact_Assessment_screenshot.png" alt="Impact Assessment Screenshot"
             style="width: 100%; height: auto; max-width: 100%; display: block; margin: 1rem 0; border-radius: 8px; border: 1px solid var(--border-color);">
         </div>
       </section>
@@ -968,10 +1014,15 @@ C:/Users/Username/Documents/COISPA/DTO_BioFlow/missing_data_matrix_R</code></pre
       <section id="video-tutorial">
         <h2>Video Tutorial</h2>
         <p>A video tutorial demonstrating how to use the <code>Missing Data Matrix</code> application, configure target
-          taxa, filter spatio-temporal options, and export analytical outcomes.</p>
+          taxa, filter spatio-temporal options, export analytical outcomes and include them into the
+          <code>impact assessment</code>.
+        </p>
         <div style="margin-top: 1.5rem; text-align: center;">
-          <video controls preload="metadata" style="width: 100%; max-width: 960px; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);">
-            <source src="https://github.com/COISPA/Missing-data-matrix_DTO-BioFlow/releases/download/video/video.tutorial.mp4" type="video/mp4">
+          <video controls preload="metadata" poster="utilities/preview_videoShinyAppDTO.svg"
+            style="width: 100%; max-width: 960px; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);">
+            <source
+              src="https://github.com/COISPA/Missing-data-matrix_DTO-BioFlow/releases/download/video_v2/video.tutorial_V2.mp4"
+              type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </div>
@@ -985,11 +1036,8 @@ C:/Users/Username/Documents/COISPA/DTO_BioFlow/missing_data_matrix_R</code></pre
       <div class="footer-section">
         <h4>About DTO-BioFlow</h4>
         <p style="font-size:0.85rem; color:#a0aec0; margin-bottom: 1rem;">
-          DTO-BioFlow is a European Union project focused on integrating biodiversity monitoring data flows into the Digital
-          Twin Ocean (DTO) to support policies and research.
-        </p>
-        <p style="font-size:0.85rem; color:#a0aec0;">
-          Lead Beneficiary of D2.8 Report: <strong>COISPA Foundation</strong>.
+          DTO-BioFlow is a European Union project (HORIZON-MISS-2022-OCEAN-01, Project Number 101112823) focused on integrating biodiversity monitoring data flows into the
+          Digital Twin Ocean (DTO) to support policies and research.
         </p>
         <div class="funding-banner" style="background: transparent; border: none; padding: 0;">
           <img src="utilities/Funded by European Union.png" alt="Funded by the European Union"
@@ -1007,21 +1055,25 @@ C:/Users/Username/Documents/COISPA/DTO_BioFlow/missing_data_matrix_R</code></pre
       </div>
       <div class="footer-section">
         <!-- License Block Creative Commons CC BY 4.0 -->
-        <div style="max-width: 1200px; margin: 0 auto 1.5rem auto; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85rem; color: #a0aec0; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <div
+          style="max-width: 1200px; margin: 0 auto 1.5rem auto; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85rem; color: #a0aec0; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
           <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" target="_blank">
-          <img alt="Creative Commons License" style="border-width:0; display: block;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
+            <img alt="Creative Commons License" style="border-width:0; display: block;"
+              src="https://i.creativecommons.org/l/by/4.0/88x31.png" />
           </a>
           <span>
-          This work, documentation, and non-software deliverables are licensed under a 
-          <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" target="_blank" style="font-size:0.85rem; color:#a0aec0;">Creative Commons Attribution 4.0 International License</a>. 
-          <p style="font-size:0.85rem; color:#a0aec0;">
-          Developed by <strong>COISPA ETS Foundation</strong> under the <strong>DTO-BioFlow Project</strong> (Funded by the European Union).
-          </p>
+            This work, documentation, and non-software deliverables are licensed under a
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" target="_blank"
+              style="font-size:0.85rem; color:#a0aec0;">Creative Commons Attribution 4.0 International License</a>.
+            <p style="font-size:0.85rem; color:#a0aec0;">
+              Developed by <strong>COISPA Foundation</strong> under the <strong>DTO-BioFlow Project</strong> (Funded
+              by the European Union).
+            </p>
           </span>
         </div>
       </div>
     </div>
-    
+
     <div class="footer-bottom">
       <span></span>
       <div class="social-links">
@@ -1114,7 +1166,7 @@ C:/Users/Username/Documents/COISPA/DTO_BioFlow/missing_data_matrix_R</code></pre
       },
       {
         title: "3. Selection Process",
-        html: `This step was developed to be able to investigate the missing data scores across different spatio-temporal coverages and resolutions by selecting specific levels of the classification factors. Since the formula for assessing the missing data for each single cells of the missing data matrix is: 
+        html: `This step was developed to be able to assign missing data scores across different spatio-temporal coverages and resolutions by selecting specific levels of the classification factors. The formula for assessing the missing data for each single cells of the missing data matrix is: 
         
         <div class="figure-container" id="fig4" style="max-width: 320px; margin: 1.5rem auto;">
           <img src="utilities/Figure 4.jpg" alt="Figure 4: Missing data matrix formula." class="figure-image" style="width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color);">
